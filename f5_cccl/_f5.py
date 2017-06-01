@@ -1344,7 +1344,9 @@ class CloudBigIP(BigIP):
 
         iapp_def = self.iapp_build_definition(config)
 
-        # Remove encrypted key and its value from SDK variables
+        # Remove encrypted key and its value from SDK variables since that for
+        # every config {key: value} in the variables list the returned
+        # variables list is {key: value, 'encrypted': val}
         for v in a.__dict__['variables']:
             v.pop('encrypted', None)
 
